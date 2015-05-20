@@ -1,3 +1,3 @@
-class Beacon < ActiveRecord::Base
+class Post < ActiveRecord::Base
   belongs_to :board, class_name: Board
 end

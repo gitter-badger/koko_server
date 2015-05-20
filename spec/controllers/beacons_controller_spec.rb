@@ -28,7 +28,7 @@ RSpec.describe BeaconsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    { uuid: "", board_id: nil}
+    { uuid: "", board_id: 1}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -45,15 +45,15 @@ RSpec.describe BeaconsController, type: :controller do
   end
 
   #
-  describe "GET #show in <uuid>.json url" do
+  describe "GET #show in <id>.json url" do
+    render_views
     it "responds correct JSON" do
       beacon = Beacon.create! valid_attributes
-      get :show, {:id => beacon.to_param}, :format => :json
-      response.should be_success
-      body = JSON.parse(response.body)
-      body.should include('board_id')
-      body.should include('posts')
-      body.should include('beacons')
+  #    get :show, {:id => beacon.to_param, :format => :json}, valid_session
+      get :show, id: 1, format: :json
+      expect(response).to be_success
+      #expect(response.body).to eq("aa")
+      expect { JSON.parse(response.body) }.not_to raise_error()
     end
   end
 

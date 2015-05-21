@@ -5,6 +5,13 @@
   <%= @board.title %>
 </p>
 
+<p>
+  <strong>Beacons:</strong>
+  <% @board.beacons.each do |beacon| %>
+    <%= link_to beacon.uuid, beacon %>
+  <% end %>
+</p>
+
 <table>
   <thead>
     <tr>

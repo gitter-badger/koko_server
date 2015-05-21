@@ -1,7 +1,20 @@
 # json.extract! @beacon, :id, :uuid, :board_id, :created_at, :updated_at
-json.board_id @beacon.board_id
-json.title    @beacon.board.title
+begin
+  json.board_id @beacon.board_id
+  json.title @beacon.board.title
+rescue
+  json.board_id nil
+  json.title ''
+end
 
-json.posts @beacon.board.posts, :id, :created_at, :content
+begin
+  json.posts @beacon.board.posts, :id, :created_at, :content
+rescue
+  json.posts []
+end
 
-json.beacons @beacon.board.beacons, :uuid
+begin
+  json.beacons @beacon.board.beacons, :uuid
+rescue
+  json.beacons []
+end

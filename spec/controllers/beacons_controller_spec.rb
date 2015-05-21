@@ -50,12 +50,23 @@ RSpec.describe BeaconsController, type: :controller do
     it "responds correct JSON" do
       beacon = Beacon.create! valid_attributes
   #    get :show, {:id => beacon.to_param, :format => :json}, valid_session
-      get :show, id: 1, format: :json
+      get :show, id: beacon.to_param, format: :json
       expect(response).to be_success
-      #expect(response.body).to eq("aa")
-      expect { JSON.parse(response.body) }.not_to raise_error()
+      expect { JSON.parse(response.body) }.not_to raise_error
     end
   end
+
+  describe "GET #show in <uuid>.json url" do
+    render_views
+    it "responds JSON with appropriate board information" do
+      beacon = Beacon.create! valid_attributes
+      get :show, id: beacon.uuid, format: :json
+      expect(response).to be_success
+      expect {
+        j_body = JSON.parse(response.body) }.not_to raise_error
+    end
+  end
+
 
   describe "GET #show" do
     it "assigns the requested beacon as @beacon" do

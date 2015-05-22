@@ -11,9 +11,9 @@ RSpec.describe "beacons/show", type: :view do
     ))
   end
 
-  it "renders attributes in <p>" do
+  it "renders UUID in <p> and hyperlink to the board with its title" do
     render
     expect(rendered).to match(/Uuid/)
-    expect(rendered).to match(/Title/)
+    assert_select "a[href=/board/#{@board.id}", :text => @board.title
   end
 end

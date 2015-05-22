@@ -24,7 +24,7 @@ RSpec.describe BeaconsController, type: :controller do
   # Beacon. As you add validations to Beacon, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { uuid: "550e8400-e29b-41d4-a716-446655440000", board_id: 1 }
+    { uuid: "E02CC25E-0049-4185-832C-3A65DB755D01", board_id: 1 }
   }
 
   let(:invalid_attributes) {
@@ -127,14 +127,15 @@ RSpec.describe BeaconsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        # skip("Add a hash of attributes valid for your model")
+        { :uuid => "E02CC25E-0049-4185-832C-3A65DB755D01", :board_id => 1 }
       }
 
       it "updates the requested beacon" do
         beacon = Beacon.create! valid_attributes
         put :update, {:id => beacon.to_param, :beacon => new_attributes}, valid_session
         beacon.reload
-        skip("Add assertions for updated state")
+        # skip("Add assertions for updated state")
       end
 
       it "assigns the requested beacon as @beacon" do

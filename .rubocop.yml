@@ -1,0 +1,17 @@
+# inherit_from: .rubocop_todo.yml
+
+# Ignore Hash syntax out-date
+Style/HashSyntax:
+  Enabled: false
+
+# Ignore spacing before Arg
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+# Ignore double/single-quote distinction
+Style/StringLiterals:
+  Enabled: false
+
+# Ignore space inside hash {}
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: false

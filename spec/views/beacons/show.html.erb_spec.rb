@@ -19,6 +19,6 @@ RSpec.describe "beacons/show", type: :view do
     render
     expect(rendered).to match(/Uuid/)
     assert_select "a[href=/board/#{@board.id}", :text => @board.title
-    assert_select "a", :text => "-"
+    expect(rendered).to match(/-/)
   end
 end

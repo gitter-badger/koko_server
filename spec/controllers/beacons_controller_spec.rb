@@ -24,11 +24,11 @@ RSpec.describe BeaconsController, type: :controller do
   # Beacon. As you add validations to Beacon, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { uuid: "550e8400-e29b-41d4-a716-446655440000", board_id: 1 }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { uuid: "", board_id: 1}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -43,6 +43,30 @@ RSpec.describe BeaconsController, type: :controller do
       expect(assigns(:beacons)).to eq([beacon])
     end
   end
+
+  #
+  describe "GET #show in <id>.json url" do
+    render_views
+    it "responds correct JSON" do
+      beacon = Beacon.create! valid_attributes
+  #    get :show, {:id => beacon.to_param, :format => :json}, valid_session
+      get :show, id: beacon.to_param, format: :json
+      expect(response).to be_success
+      expect { JSON.parse(response.body) }.not_to raise_error
+    end
+  end
+
+  describe "GET #show in <uuid>.json url" do
+    render_views
+    it "responds JSON with appropriate board information" do
+      beacon = Beacon.create! valid_attributes
+      get :show, id: beacon.uuid, format: :json
+      expect(response).to be_success
+      expect {
+        j_body = JSON.parse(response.body) }.not_to raise_error
+    end
+  end
+
 
   describe "GET #show" do
     it "assigns the requested beacon as @beacon" do

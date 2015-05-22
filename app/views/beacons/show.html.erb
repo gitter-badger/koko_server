@@ -7,7 +7,7 @@
 
 <p>
   <strong>Board:</strong>
-  <%= @beacon.board_id %>
+  <%= link_to @beacon.board.title, @beacon.board %>
 </p>
 
 <%= link_to 'Edit', edit_beacon_path(@beacon) %> |

@@ -5,9 +5,13 @@ RSpec.describe "beacons/show", type: :view do
     @board = assign(:board, Board.create!(
       :title => "Title"
     ))
-    @beacon = assign(:beacon, Beacon.create!(
-      :uuid => "Uuid",
+    @beacon1 = assign(:beacon, Beacon.create!(
+      :uuid => "Uuid1",
       :board_id => @board.id
+    ))
+    @beacon2 = assign(:beacon, Beacon.create!(
+      :uuid => "Uuid2",
+      :board_id => nil
     ))
   end
 
@@ -15,5 +19,6 @@ RSpec.describe "beacons/show", type: :view do
     render
     expect(rendered).to match(/Uuid/)
     assert_select "a[href=/board/#{@board.id}", :text => @board.title
+    assert_select "a", :text => "-"
   end
 end

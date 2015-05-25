@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @board.posts.reverse.each do |post| %>
+    <% @board.posts.order(:created_at).each do |post| %>
       <tr>
         <td><%= post.created_at %></td>
         <td><%= post.content %></td>
@@ -28,6 +28,36 @@
     <% end %>
   </tbody>
 </table>
+
+<p>
+  <strong>New Post</strong>
+</p>
+<% @post = Post.new %>
+<% @post.board_id = @board.id %>
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %>
+         prohibited this post from being saved:
+      </h2>
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.hidden_field :board_id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Edit', edit_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

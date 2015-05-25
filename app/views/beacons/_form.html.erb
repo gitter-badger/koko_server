@@ -15,9 +15,11 @@
     <%= f.label :uuid %><br>
     <%= f.text_field :uuid %>
   </div>
+  <% @dummy_board = Board.new(:id => nil, :title => "") %>
   <div class="field">
     <%= f.label :board_id %><br>
-    <%= f.collection_select :board_id, Board.all, :id, :title %>
+    <%= f.collection_select :board_id,
+     Board.all.unshift(@dummy_board), :id, :title %>
   </div>
   <div class="actions">
     <%= f.submit %>

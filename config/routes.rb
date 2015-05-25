@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :beacons
   resources :boards
 
-  get '/beacons/find/:uuid', to: 'beacons#remote', as: 'beacons_remote'
+  get '/beacons/find/:uuid', to: 'beacons#remote', as: 'beacons_find'
 
   root 'boards#index'
 

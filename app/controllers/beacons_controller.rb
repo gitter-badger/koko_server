@@ -13,7 +13,7 @@ class BeaconsController < ApplicationController
   def show
   end
 
-  # GET /beacons/remote/<uuid>.JSON
+  # GET /beacons/find/<uuid>.JSON
   def remote
   end
 

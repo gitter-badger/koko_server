@@ -45,24 +45,48 @@ RSpec.describe BeaconsController, type: :controller do
     render_views
     it "responds correct JSON" do
       beacon = Beacon.create! valid_attributes
-  #    get :show, {:id => beacon.to_param, :format => :json}, valid_session
+      # get :show, {:id => beacon.to_param, :format => :json}, valid_session
       get :show, id: beacon.to_param, format: :json
       expect(response).to be_success
       expect { JSON.parse(response.body) }.not_to raise_error
     end
   end
 
-  describe "GET #show in remote/<uuid>.json url" do
+  describe "GET #remote in find/<uuid>.json url" do
     render_views
+    board = Board.create! title: "Test Board"
+    let(:attributes_with_board) do
+      { :uuid => "E02CC25E-0049-4185-832C-3A65DB755D01", :board_id => board.id }
+    end
     it "responds JSON with appropriate board information" do
-      beacon = Beacon.create! valid_attributes
+      beacon = Beacon.create! attributes_with_board
       get :remote, uuid: beacon.uuid, format: :json
       expect(response).to be_success
-      expect {
-        j_body = JSON.parse(response.body) }.not_to raise_error
+      expect { @board_json = JSON.parse(response.body) }.not_to raise_error
+      expect(@board_json).to include("board_id" => beacon.board_id)
+      expect(@board_json).to include("beacons")
+      associated_beacons = @board_json["beacons"]
+      expect(associated_beacons).to include("uuid" => beacon.uuid)
     end
   end
 
+  describe "GET #remote in find/<uuid>.json for a beacon without boards" do
+    render_views
+    Board.create! title: "Test Board"
+    let(:attributes_without_board) do
+      { :uuid => "E02CC25E-0049-4185-832C-3A65DB755D01", :board_id => nil }
+    end
+    it "responds JSON with empty board_id value" do
+      beacon = Beacon.create! attributes_without_board
+      get :remote, uuid: beacon.uuid, format: :json
+      expect(response).to be_success
+      expect { @board_json = JSON.parse(response.body) }.not_to raise_error
+      expect(@board_json).to include("board_id" => nil)
+      expect(@board_json).to include("beacons")
+      associated_beacons = @board_json["beacons"]
+      expect(associated_beacons).to include("uuid" => beacon.uuid)
+    end
+  end
 
   describe "GET #show" do
     it "assigns the requested beacon as @beacon" do

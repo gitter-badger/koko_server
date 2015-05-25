@@ -56,11 +56,11 @@ RSpec.describe BeaconsController, type: :controller do
     end
   end
 
-  describe "GET #show in <uuid>.json url" do
+  describe "GET #show in remote/<uuid>.json url" do
     render_views
     it "responds JSON with appropriate board information" do
       beacon = Beacon.create! valid_attributes
-      get :show, id: beacon.uuid, format: :json
+      get :remote, uuid: beacon.uuid, format: :json
       expect(response).to be_success
       expect {
         j_body = JSON.parse(response.body) }.not_to raise_error

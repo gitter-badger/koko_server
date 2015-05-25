@@ -13,6 +13,10 @@ class PostsController < ApplicationController
   def show
   end
 
+  # POST /posts.json
+  def remote
+  end
+
   # GET /posts/new
   def new
     @post = Post.new
@@ -30,7 +34,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { redirect_to board_url(@post.board, format: :json) }
+        # format.json { redirect_to board_url(@post.board, format: :json) }
+        format.json { render :remote, status: :created, location: @post }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }

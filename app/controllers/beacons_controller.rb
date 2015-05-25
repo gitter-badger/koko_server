@@ -29,7 +29,7 @@ class BeaconsController < ApplicationController
     respond_to do |format|
       if @beacon.save
         format.html { redirect_to @beacon, notice: 'Beacon was successfully created.' }
-        format.json { render :show, status: :created, location: @beacon }
+        format.json { render :show, status: :created, location: @beacon.board }
       else
         format.html { render :new }
         format.json { render json: @beacon.errors, status: :unprocessable_entity }

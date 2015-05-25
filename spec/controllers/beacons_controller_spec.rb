@@ -23,13 +23,9 @@ RSpec.describe BeaconsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Beacon. As you add validations to Beacon, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    { uuid: "E02CC25E-0049-4185-832C-3A65DB755D01", board_id: 1 }
-  }
+  let(:valid_attributes) { { uuid: "E02CC25E-0049-4185-832C-3A65DB755D01", board_id: 1 } }
 
-  let(:invalid_attributes) {
-    { uuid: "", board_id: 1}
-  }
+  let(:invalid_attributes) { { uuid: "", board_id: 1} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

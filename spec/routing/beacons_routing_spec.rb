@@ -31,5 +31,9 @@ RSpec.describe BeaconsController, type: :routing do
       expect(:delete => "/beacons/1").to route_to("beacons#destroy", :id => "1")
     end
 
+    it "routes to #remote" do
+      expect(:get => "/beacons/find/ffff-ffff-ffff.json").to route_to("beacons#remote", :uuid => "ffff-ffff-ffff", :format => "json")
+    end
+
   end
 end

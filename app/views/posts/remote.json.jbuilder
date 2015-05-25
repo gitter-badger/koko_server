@@ -1,20 +1,29 @@
 @board = @post.board
-begin
-  json.board_id @board.id
-  json.title @board.title
-rescue
-  json.board_id nil
-  json.title ''
-end
+json.board_id @board.id
+json.title @board.title
 
-begin
-  json.posts @board.posts, :id, :created_at, :content
-rescue
-  json.posts []
-end
+json.posts @board.posts, :id, :created_at, :content
 
-begin
-  json.beacons @board.beacons, :uuid
-rescue
-  json.beacons []
-end
+json.beacons @board.beacons, :uuid
+
+
+#
+# begin
+#   json.board_id @board.id
+#   json.title @board.title
+# rescue
+#   json.board_id nil
+#   json.title ''
+# end
+#
+# begin
+#   json.posts @board.posts, :id, :created_at, :content
+# rescue
+#   json.posts []
+# end
+#
+# begin
+#   json.beacons @board.beacons, :uuid
+# rescue
+#   json.beacons []
+# end

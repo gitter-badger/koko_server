@@ -1,6 +1,10 @@
 language: ruby
 rvm:
-#  - 2.1.5
-  - 2.2.2
-script: bundle exec rspec
-
+- 2.2.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: xaalKuqyl7ez6msPFmqyqU9qvVglla/ziIpa/ssUghaa06W6QQipybujaZydsKRzDGuTIb66GvMp+TTS1IYDXR4i5RR+y3PgyCUnabV4wAoto3UoR8070eMKef1AIQEhmoxXirlS+yvAOI9oNjpryvqAS0ou9nBhOhSec7OcpYg/cd1O/6EX8J76gT2roS9etxPRi2bHhuoiMg0hBUv8YYxrv0lNtjpS6oGGbk0ERA/nJrgxRQNgwhGtchbXd9d96tgnDSk2Owjx99Ix36nUn66/cDfbqJCkpNWeBvdlY3Vmd/cno/Pk5WVwQW3HG6WnAy8+N2WykSTsJVZpjuSFOm2WRoPK9t0TawITEd1fY1N13UZDXXiBvIns7GYcwA95zwn1xTCBqp8oj+Aw54qwXjes50hsZT/qA3ryYK9hxqMLRNL0m15dQL0nH7B2OvQMpw7Opt82t3tTwH5Way7yRUc9adCcRanijC0o3lxY9qJiHHqNhju+MyKKRjTnzRC0NqfjMYzA6oxqSHyYzy9hvI8BoKuOOvX3zyEu777FBzvdZhyIBDOMwnFLzBDf940jivv03OTpOmmDZMa3q+H4oJtNOEV8hzo7gAonZw/Mc/blXkVEvNVqnt64Cgjz6JwmzStNBh10fmD6xNZm3ucMlZidD9jLQSNS5HCR2HqqSNo=
+  app: koko-server
+  on:
+    repo: aYuMatsuzawa/koko_server

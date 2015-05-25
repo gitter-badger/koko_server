@@ -1,5 +1,5 @@
 class BeaconsController < ApplicationController
-  before_action :set_beacon, only: [:show, :resolve, :edit, :update, :destroy]
+  before_action :set_beacon, only: [:show, :edit, :update, :destroy]
 
   # GET /beacons
   # GET /beacons.json
@@ -10,11 +10,6 @@ class BeaconsController < ApplicationController
   # GET /beacons/1
   # GET /beacons/1.json
   def show
-  end
-
-  # GET /beacons/<uuid>.json
-  def resolve
-
   end
 
   # GET /beacons/new

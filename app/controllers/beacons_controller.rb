@@ -62,21 +62,19 @@ class BeaconsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_beacon
-      # if params[:id].match(/%d/)
-        begin
-          @beacon = Beacon.find(params[:id])
-        rescue
-          @beacon = Beacon.find_by(:uuid=>params[:id])
-        end
-      # else
-        # @beacon = Beacon.find_by(:uuid=>params[:id])
-      # end
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def beacon_params
-      params.require(:beacon).permit(:uuid, :board_id)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_beacon
+    # if params[:id].match(/%d/)
+    begin
+      @beacon = Beacon.find(params[:id])
+    rescue
+      @beacon = Beacon.find_by(:uuid => params[:id])
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def beacon_params
+    params.require(:beacon).permit(:uuid, :board_id)
+  end
 end

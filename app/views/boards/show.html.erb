@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @board.posts.reverse.each do |post| %>
+    <% @board.posts.order(:created_at).each do |post| %>
       <tr>
         <td><%= post.created_at %></td>
         <td><%= post.content %></td>

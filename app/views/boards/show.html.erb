@@ -12,6 +12,14 @@
   <% end %>
 </p>
 
+<%= select_tag 'edit[beacon]',
+ options_for_select(Beacon.all.map{ |beacon| [beacon.uuid, beacon.id]}) %>
+
+<button onclick =
+  "location.href = '/beacons/' + document.getElementById('edit_beacon').value + '/edit'">
+    Edit
+</button>
+
 <table>
   <thead>
     <tr>

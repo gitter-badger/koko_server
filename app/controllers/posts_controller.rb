@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => [:create]
 
   # GET /posts
   # GET /posts.json

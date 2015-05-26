@@ -1,5 +1,6 @@
 class BeaconsController < ApplicationController
   before_action :set_beacon, only: [:show, :edit, :update, :destroy]
+  before_action :set_beacon_remote, only: [:remote]
 
   # GET /beacons
   # GET /beacons.json
@@ -10,6 +11,10 @@ class BeaconsController < ApplicationController
   # GET /beacons/1
   # GET /beacons/1.json
   def show
+  end
+
+  # GET /beacons/find/<uuid>.JSON
+  def remote
   end
 
   # GET /beacons/new
@@ -66,12 +71,19 @@ class BeaconsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_beacon
     # if params[:id].match(/%d/)
-    begin
-      @beacon = Beacon.find(params[:id])
-    rescue
-      @beacon = Beacon.find_by(:uuid => params[:id])
-    end
+    # begin
+    @beacon = Beacon.find(params[:id])
+    # rescue
+    #   @beacon = Beacon.find_by(:uuid => params[:id])
+    #   @remote = true
+    # end
   end
+
+  # Setup for remote queries.
+  def set_beacon_remote
+    @beacon = Beacon.find_by(uuid: params[:uuid])
+  end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def beacon_params

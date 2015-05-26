@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :beacons
   resources :boards
 
+  get '/beacons/find/:uuid', to: 'beacons#remote', as: 'beacons_find'
+
   root 'boards#index'
+
+  # get '/beacons/remote/:uuid', to: 'beacons#remote'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

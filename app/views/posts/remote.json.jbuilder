@@ -1,4 +1,13 @@
-json.extract! @board, :id, :title, :created_at, :updated_at
+@board = @post.board
+json.board_id @board.id
+json.title @board.title
+
+json.posts @board.posts, :id, :created_at, :content
+
+json.beacons @board.beacons, :uuid
+
+
+#
 # begin
 #   json.board_id @board.id
 #   json.title @board.title

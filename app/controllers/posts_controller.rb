@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if params[:board_id] # if board_id specified by url parameter
+      @posts = Post.select { |post| post.board_id.to_s == params[:board_id] }
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1

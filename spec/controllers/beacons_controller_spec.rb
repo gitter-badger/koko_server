@@ -84,7 +84,8 @@ RSpec.describe BeaconsController, type: :controller do
       expect(@board_json).to include("board_id" => nil)
       expect(@board_json).to include("beacons")
       associated_beacons = @board_json["beacons"]
-      expect(associated_beacons).to include("uuid" => beacon.uuid)
+      expect(associated_beacons).to be_a(Array)
+      expect(associated_beacons).to eq([])
     end
   end
 

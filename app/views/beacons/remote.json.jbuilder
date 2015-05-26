@@ -12,10 +12,10 @@ else
 
   json.posts []
 
-  # json.beacons []
-  json.beacons do
-    json.uuid @beacon.uuid
-  end
+  json.beacons []
+  # json.beacons do
+  #   json.uuid @beacon.uuid
+  # end
 end
 #
 # begin
